@@ -1,0 +1,31 @@
+# Nusantara Download Manager (NDM) - Changelog
+
+## [1.1.1] - Initial Release (Nightly)
+
+### Features
+- **🚀 High-Speed Engine**: Implemented a multi-threaded download architecture that allows files to be downloaded in segments concurrently, significantly improving speed.
+- **⏯️ Smart Resume**: Added support for pausing and resuming downloads. Download progress is automatically saved to handle interruptions gracefully.
+- **🎨 Premium UI/UX**: Crafted a modern, dark-themed interface using `CustomTkinter` with consistent **SemiBold Poppins** typography and vibrant blue accents.
+- **📂 Categorization**: Automatic filtering of downloads into predefined categories (Compressed, Video, Audio, Image, Document, and Program).
+- **🌐 Full Localization (i18n)**: 
+    - Support for **English** and **Bahasa Indonesia**.
+    - Instant UI refresh when switching languages (no restart required).
+    - Dynamic Setup Guide for browser integration based on selected language.
+- **🔌 Browser Integration**: 
+    - Dedicated **Chrome Extension** for capturing links.
+    - Local server (Port 5555) to communicate between the browser and NDM.
+    - Drag-and-drop installation support for the extension.
+- **💾 Persistent Storage**: SQLite-backed database system for persistent download history, settings, and category filters.
+- **🗃️ True Portable Mode**: 
+    - Automatic detection of `Portable` builds.
+    - Self-contained storage logic: `downloads.db` and configuration are saved in the local executable folder in portable mode.
+- **📥 Native Shell Drag**: Integrated Windows shell drag support for the browser extension installer.
+- **🔔 System Tray Integration**: Fully functional system tray icon with a context menu for quick actions (Open, Pause All, Resume All, Exit).
+
+### Fixed
+- Fixed localization bugs in the "Portable" version where settings were not persisting correctly.
+- Improved path resolution for bundled resources in PyInstaller builds.
+- Fixed a bug where the Setup Guide steps were not translating correctly when changing languages.
+
+---
+*Crafted with ❤️ by posann*
