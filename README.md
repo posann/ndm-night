@@ -37,8 +37,8 @@ pip install customtkinter pillow pystray requests
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/posann/NAUNGLOADER.git
-   cd NAUNGLOADER
+   git clone https://github.com/posann/ndm-nightly.git
+   cd ndm-nightly
    ```
 2. Run the application:
    ```bash
