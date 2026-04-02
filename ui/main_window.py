@@ -148,7 +148,8 @@ class DownloadManager:
         logo_top.pack(fill=tk.X)
         ctk.CTkFrame(logo_top, width=4, height=32, fg_color="#3b8ed0", corner_radius=2).pack(side=tk.LEFT, padx=(0, 10))
         ctk.CTkLabel(logo_top, text="NDM", font=F(22, True)).pack(side=tk.LEFT)
-        ctk.CTkLabel(logo_container, text=L("app.title"), font=F(12), text_color="#555f6e").pack(anchor="w", pady=(4, 0))
+        self.app_title_label = ctk.CTkLabel(logo_container, text=L("app.title"), font=F(12), text_color="#555f6e")
+        self.app_title_label.pack(anchor="w", pady=(4, 0))
 
         # Buttons
         NAV_BTN = {"corner_radius": 8, "height": 40, "anchor": "w", "fg_color": "transparent", "hover_color": "#1a2130", "text_color": "#e8edf2", "font": F(13, True)}
@@ -177,7 +178,8 @@ class DownloadManager:
         footer = ctk.CTkFrame(self.sidebar_frame, fg_color="transparent")
         footer.grid(row=11, column=0, padx=16, pady=(8, 20), sticky="ew")
         self.autostart_var = tk.BooleanVar(value=self.check_autostart_status())
-        ctk.CTkSwitch(footer, text=L("sidebar.start_on_boot"), variable=self.autostart_var, command=self.toggle_autostart, font=F(12), text_color="#555f6e").pack(anchor="w")
+        self.autostart_switch = ctk.CTkSwitch(footer, text=L("sidebar.start_on_boot"), variable=self.autostart_var, command=self.toggle_autostart, font=F(12), text_color="#555f6e")
+        self.autostart_switch.pack(anchor="w")
 
         self.content_frame = ctk.CTkFrame(self.root, corner_radius=0, fg_color="#111920")
         self.content_frame.grid(row=0, column=1, sticky="nsew")
@@ -277,6 +279,10 @@ class DownloadManager:
 
     def refresh_ui(self):
         """Refreshes sidebar buttons and other static UI elements after a language change"""
+        # Updates App Title
+        if hasattr(self, 'app_title_label'):
+            self.app_title_label.configure(text=L("app.title"))
+            
         # Updates Downloads button
         self.sidebar_buttons["All"].configure(text=L("sidebar.downloads_header"))
         
@@ -296,9 +302,26 @@ class DownloadManager:
         for name, icon, key in tool_items:
             if name in self.sidebar_buttons:
                 self.sidebar_buttons[name].configure(text=icon + L(key))
+        
+        # Updates Footer Switch
+        if hasattr(self, 'autostart_switch'):
+            self.autostart_switch.configure(text=L("sidebar.start_on_boot"))
                 
         # Re-trigger stats update to refresh labels like "Active: {count}"
         self.update_stats()
+        
+        # Refresh current active page if it has a setup_ui or refresh method
+        if self.current_page:
+            target_key = "Downloads" if self.current_page in {"All", "Active", "Success", "Error"} else self.current_page
+            if target_key in self.page_frames:
+                page = self.page_frames[target_key]
+                # If page has a specific refresh/re-init method, use it
+                if hasattr(page, 'setup_ui'):
+                    for widget in page.winfo_children():
+                        widget.destroy()
+                    page.setup_ui()
+                elif hasattr(page, 'refresh_ui'):
+                    page.refresh_ui()
 
     def process_update_queue(self):
         try:

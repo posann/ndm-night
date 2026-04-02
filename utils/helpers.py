@@ -3,19 +3,44 @@ import sys
 
 def get_resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
-    try:
+    if getattr(sys, 'frozen', False):
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
+    else:
+        # In dev mode, use the project root relative to this file's location
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
     return os.path.join(base_path, relative_path)
 
 def get_data_path(filename):
-    """ Get absolute path to data file in AppData directory for persistent storage """
-    app_data = os.getenv('APPDATA')
-    ndm_dir = os.path.join(app_data, 'NDM')
+    """ 
+    Get absolute path to data file. 
+    In portable mode, stores data in the same directory as the executable.
+    Otherwise, uses the system AppData directory.
+    """
+    if getattr(sys, 'frozen', False):
+        base_dir = os.path.dirname(sys.executable)
+        # Check if we are running the portable version
+        is_portable = "Portable" in os.path.basename(sys.executable) or \
+                      os.path.exists(os.path.join(base_dir, "portable"))
+    else:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        is_portable = os.path.exists(os.path.join(base_dir, "portable"))
+
+    if is_portable:
+        ndm_dir = base_dir
+    else:
+        app_data = os.getenv('APPDATA')
+        if not app_data:
+            # Fallback for non-Windows or missing env var
+            app_data = os.path.expanduser("~")
+        ndm_dir = os.path.join(app_data, 'NDM')
+    
     if not os.path.exists(ndm_dir):
-        os.makedirs(ndm_dir)
+        try:
+            os.makedirs(ndm_dir)
+        except: pass
+        
     return os.path.join(ndm_dir, filename)
 
 def format_size(size):

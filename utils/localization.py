@@ -23,10 +23,14 @@ def init_localization(lang=None):
                 new_translations = json.load(f)
                 _translations.clear()
                 _translations.update(new_translations)
+                # print(f"Successfully loaded localization: {lang} from {path}")
         except Exception as e:
-            print(f"Error loading translation file: {e}")
+            print(f"Error loading translation file '{path}': {e}")
     else:
-        print(f"Translation file not found: {path}")
+        # If the specific language fails, we don't clear translations to keep English defaults
+        print(f"CRITICAL: Translation file not found at: {path}")
+        # Check current implementation location
+        # print(f"Current script location: {__file__}")
 
 def L(key, default=None, **kwargs):
     """
@@ -38,6 +42,8 @@ def L(key, default=None, **kwargs):
     for p in parts:
         if isinstance(val, dict) and p in val:
             val = val[p]
+        elif isinstance(val, list) and p.isdigit() and int(p) < len(val):
+            val = val[int(p)]
         else:
             # Fallback to key or default
             res = default if default is not None else key

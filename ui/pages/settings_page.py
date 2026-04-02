@@ -77,11 +77,6 @@ class SettingsPage(ctk.CTkFrame):
             # Re-init localization
             init_localization(new_lang)
             
-            # Refresh Sidebar (we need to trigger this in main_window)
+            # Refresh all UI components (including this page) via main_window
             if hasattr(self.manager, 'refresh_ui'):
                 self.manager.refresh_ui()
-            
-            # Re-setup this page's UI to show new language
-            for widget in self.winfo_children():
-                widget.destroy()
-            self.setup_ui()

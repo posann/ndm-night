@@ -32,5 +32,5 @@ class AboutPage(ctk.CTkFrame):
         footer = ctk.CTkFrame(container, fg_color="transparent")
         footer.pack(side=tk.BOTTOM, pady=40)
         
-        ctk.CTkLabel(footer, text=L("about.crafted_by"), font=F(13), text_color="#555f6e").pack(side=tk.LEFT, padx=6)
+        ctk.CTkLabel(footer, text=L("about.crafted_by"), font=F(15), text_color="#555f6e").pack(side=tk.LEFT, padx=6)
         ctk.CTkLabel(footer, text="posann", font=F(15, True), text_color="#3b8ed0").pack(side=tk.LEFT)

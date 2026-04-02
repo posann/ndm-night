@@ -47,17 +47,21 @@ class BrowserPage(ctk.CTkFrame):
         ctk.CTkLabel(left, text=L("browser.setup_guide"), font=F(18, True),
                      text_color="#3b8ed0").pack(pady=(24, 16), padx=24, anchor="w")
 
-        for i in range(3):
-            title = L(f"browser.steps.{i}.title")
-            desc = L(f"browser.steps.{i}.desc")
-            row = ctk.CTkFrame(left, fg_color="transparent")
-            row.pack(fill=tk.X, padx=20, pady=10)
-            ctk.CTkLabel(row, text=title, font=F(13, True),
-                         text_color="#3b8ed0", anchor="w").pack(fill=tk.X)
-            ctk.CTkLabel(row, text=desc, font=F(12), text_color="#6b7a8d",
-                         anchor="w", wraplength=340, justify="left").pack(fill=tk.X)
-            if i < 2:
-                ctk.CTkFrame(left, height=1, fg_color="#1e2c3a").pack(fill=tk.X, padx=28, pady=5)
+        # Dynamically load steps from localization
+        steps = L("browser.steps", default=[])
+        if isinstance(steps, list):
+            for i, step in enumerate(steps):
+                title = step.get("title", "")
+                desc = step.get("desc", "")
+                
+                row = ctk.CTkFrame(left, fg_color="transparent")
+                row.pack(fill=tk.X, padx=20, pady=10)
+                ctk.CTkLabel(row, text=title, font=F(13, True),
+                             text_color="#3b8ed0", anchor="w").pack(fill=tk.X)
+                ctk.CTkLabel(row, text=desc, font=F(12), text_color="#6b7a8d",
+                             anchor="w", wraplength=340, justify="left").pack(fill=tk.X)
+                if i < len(steps) - 1:
+                    ctk.CTkFrame(left, height=1, fg_color="#1e2c3a").pack(fill=tk.X, padx=28, pady=5)
 
         # Right: Installation card
         right = ctk.CTkFrame(body, fg_color="transparent")
