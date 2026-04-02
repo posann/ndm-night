@@ -107,7 +107,7 @@ def perform_download(download_info, update_queue):
         }
         
         # Domain-specific optimizations
-        is_gdrive = "drive.google.com" in url or "docs.google.com" in url
+        is_gdrive = "drive.google.com" in url or "docs.google.com" in url or "drive.usercontent.google.com" in url
         
         # Check if server supports Range requests (multi-thread)
         # Use existing hint if available to skip redundant pings
@@ -173,12 +173,12 @@ def perform_download(download_info, update_queue):
                 pass
 
         # Multi-thread only if supported, size > 1MB
-        # GDrive optimization: Limit threads to 2 to avoid "Too many requests" (429)
+        # GDrive optimization: Limit threads to 1 to avoid "Too many requests" (429) and quota bans
         if download_info.get('threads'):
             num_threads = download_info['threads']
         else:
             if is_gdrive:
-                num_threads = 2 if (supports_range and total_size > 1024 * 1024) else 1
+                num_threads = 1
             else:
                 num_threads = 8 if (supports_range and total_size > 1024 * 1024) else 1
             download_info['threads'] = num_threads # Save it for future resumes

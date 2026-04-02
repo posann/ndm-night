@@ -4,7 +4,9 @@ import threading
 import os
 import time
 import requests
-from urllib.parse import urlparse
+import re
+import mimetypes
+from urllib.parse import urlparse, unquote
 from utils.helpers import format_size, get_unique_path
 from utils.database import save_download, delete_download, load_downloads
 from utils.localization import L
@@ -39,7 +41,7 @@ def add_download(manager):
     manager.log_event(f"{L('downloads.adding')} {url[:60]}...", "INFO")
         
     # AUTO-DETECTION for Google Drive
-    is_gdrive = "drive.google.com" in url or "docs.google.com" in url
+    is_gdrive = "drive.google.com" in url or "docs.google.com" in url or "drive.usercontent.google.com" in url
     if is_gdrive:
         manager.mode_var.set("GDrive")
         new_url = convert_gdrive_url(url)
@@ -96,22 +98,44 @@ def fetch_file_info(manager, url):
                 confirm_token = value
                 break
         if confirm_token:
-            url += f"&confirm={confirm_token}"
+            separator = "&" if "?" in url else "?"
+            url += f"{separator}confirm={confirm_token}"
             response = session.get(url, stream=True, allow_redirects=True, timeout=10)
         
         response.raise_for_status()
         
         filename = ""
-        if 'content-disposition' in response.headers:
-            cd = response.headers['content-disposition']
-            if 'filename=' in cd:
-                filename = cd.split('filename=')[1].split(';')[0].strip('\"\'')
+        cd = response.headers.get('content-disposition', '')
+        if cd:
+            fname_star = re.findall(r"filename\*=UTF-8''([^;]+)", cd, flags=re.IGNORECASE)
+            fname_quoted = re.findall(r'filename="([^"]+)"', cd, flags=re.IGNORECASE)
+            fname_unquoted = re.findall(r'filename=([^;]+)', cd, flags=re.IGNORECASE)
+            
+            if fname_star:
+                filename = unquote(fname_star[0])
+            elif fname_quoted:
+                filename = fname_quoted[0]
+            elif fname_unquoted:
+                filename = fname_unquoted[0].strip("'\" \t")
         
-        if not filename or filename == 'uc':
+        if not filename or filename == 'uc' or filename == 'download':
             parsed_url = urlparse(url)
-            filename = os.path.basename(parsed_url.path)
-            if not filename or filename == 'uc':
-                filename = f"gdrive_file_{manager.download_id}.zip"
+            filename = os.path.basename(unquote(parsed_url.path))
+            
+            if not filename or filename in ['uc', 'download']:
+                content_type = response.headers.get('content-type', '').split(';')[0].strip()
+                ext = mimetypes.guess_extension(content_type) or ''
+                
+                # Manual overrides for robustness
+                if content_type == 'application/pdf': ext = '.pdf'
+                elif content_type == 'application/zip': ext = '.zip'
+                elif content_type == 'application/x-zip-compressed': ext = '.zip'
+                elif content_type == 'application/vnd.android.package-archive': ext = '.apk'
+                elif content_type == 'application/x-rar-compressed': ext = '.rar'
+                elif not ext: ext = '.bin'
+                
+                prefix = "gdrive_file_" if "drive.google.com" in url or "docs.google.com" in url else "file_"
+                filename = f"{prefix}{manager.download_id}{ext}"
         
         if '?' in filename:
             filename = filename.split('?')[0]

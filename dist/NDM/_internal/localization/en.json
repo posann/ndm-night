@@ -17,7 +17,7 @@
     "downloads": {
         "url_label": "URL",
         "url_placeholder": "Enter download URL here...",
-        "search_placeholder": "🔍  Search by filename or URL...",
+        "search_placeholder": "Search by filename or URL...",
         "paste": "Paste",
         "add_download": "+ Add Download",
         "adding": "Adding new download:",
