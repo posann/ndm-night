@@ -1,0 +1,156 @@
+{
+    "app": {
+        "title": "Nusantara Download Manager",
+        "version": "Version 2.0.1 Stable"
+    },
+    "sidebar": {
+        "downloads_header": "Downloads",
+        "tools_header": "Tools",
+        "active": "Active",
+        "completed": "Completed",
+        "failed": "Failed",
+        "integration": "Integration",
+        "activity_log": "Activity Log",
+        "about_ndm": "About NDM",
+        "start_on_boot": "Start on Boot"
+    },
+    "downloads": {
+        "url_label": "URL",
+        "url_placeholder": "Enter download URL here...",
+        "search_placeholder": "🔍  Search by filename or URL...",
+        "paste": "Paste",
+        "add_download": "+ Add Download",
+        "adding": "Adding new download:",
+        "category": {
+            "All": "All",
+            "Compressed": "Compressed",
+            "Video": "Video",
+            "Audio": "Audio",
+            "Image": "Image",
+            "Document": "Document",
+            "Program": "Program"
+        },
+        "stats": {
+            "ready": "Ready",
+            "active": "Active: {count}",
+            "completed": "Completed: {count}",
+            "total": "Total: {size}"
+        },
+        "network": {
+            "connected": "",
+            "loss": ""
+        },
+        "controls": {
+            "select_all": "Select All",
+            "clear_success": "Clear Completed",
+            "resume_selected": "Resume Selected",
+            "pause_selected": "Pause Selected",
+            "delete_selected": "Delete Selected"
+        }
+    },
+    "row": {
+        "progress": "Progress",
+        "speed": "Speed",
+        "status": "Speed",
+        "eta": "Estimate",
+        "pause": "Pause",
+        "resume": "Resume",
+        "cancel": "Cancel",
+        "details": "Details",
+        "open_folder": "Open Folder",
+        "redownload": "Re-download",
+        "unknown": "Unknown",
+        "added": "Added"
+    },
+    "browser": {
+        "title": "Browser Integration",
+        "server_active": "Server Active",
+        "server_offline": "Server Offline",
+        "setup_guide": "Setup Guide",
+        "install_now": "Install Now",
+        "drag_drop": "DRAG & DROP HERE",
+        "drag_desc": "Move this card into Chrome's Extensions page",
+        "load_unpacked": "Or use Load Unpacked:",
+        "copy_path": "Copy Path",
+        "copied": "Copied!",
+        "steps": [
+            {
+                "title": "1. Enable Developer Mode",
+                "desc": "Open chrome://extensions/ in Chrome and toggle on 'Developer mode' in the top-right corner."
+            },
+            {
+                "title": "2. Install Extension",
+                "desc": "Drag the card on the right directly onto the Chrome extensions page for instant installation."
+            },
+            {
+                "title": "3. Start Downloading",
+                "desc": "Click the NDM icon in Chrome, then drag any link into the NDM popup to queue it."
+            }
+        ]
+    },
+    "logging": {
+        "title": "Activity Log",
+        "clear_history": "Clear History",
+        "log_opened": "Activity log view opened."
+    },
+    "about": {
+        "header": "🚀",
+        "description": "A modular, multi-threaded engine optimized for\nspeed and simplicity. Built for professional\nworkflows and daily downloading.",
+        "crafted_by": "Crafted with ❤️ by",
+        "close": "Close Window"
+    },
+    "dialogs": {
+        "info_title": "Download File Info",
+        "file_info": "File Information",
+        "file_name": "File Name:",
+        "file_size": "File Size:",
+        "extension": "Extension:",
+        "download": "Download",
+        "cancel": "Cancel",
+        "details_title": "File Details",
+        "storage_location": "• Storage Location: {path}",
+        "total_size": "• Total Size: {size}",
+        "current_status": "• Current Status: {status}",
+        "date_added": "• Date Added: {date}",
+        "source_url": "🔗 Source URL (Update to refresh expired links):",
+        "update_url": "Update URL",
+        "close": "Close",
+        "exit_title": "Exit Confirmation",
+        "next_action": "Next Action?",
+        "exit_desc": "Choose whether to exit completely or\ncontinue running in the background (Tray).",
+        "to_tray": "Minimize to Tray",
+        "exit_app": "Exit App"
+    },
+    "status": {
+        "starting": "Starting",
+        "downloading": "Downloading",
+        "merging": "Merging",
+        "completed": "Completed",
+        "paused": "Paused",
+        "cancelled": "Cancelled",
+        "error": "Error",
+        "connection_lost": "Connection Lost"
+    },
+    "settings": {
+        "title": "Settings",
+        "general": "General Settings",
+        "language": "UI Language",
+        "language_desc": "Changes will be applied immediately to the sidebar.",
+        "appearance": "Appearance",
+        "theme": "Theme Mode",
+        "save_success": "Settings saved successfully."
+    },
+    "tray": {
+        "open": "Open NDM",
+        "pause_all": "Pause All",
+        "resume_all": "Resume All",
+        "exit": "Exit"
+    },
+    "messages": {
+        "warning": "Warning",
+        "enter_url": "Please enter a URL first.",
+        "start_failed": "Failed to start download: {error}",
+        "url_updated": "URL updated successfully.",
+        "running_background": "NDM is running in the background (System Tray)."
+    }
+}
