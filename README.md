@@ -81,6 +81,7 @@ To get NDM working with your browser:
 2. Drag the extension card directly into your Chrome Extensions page (`chrome://extensions/`) or copy the extension path provided and use "Load unpacked".
 3. Ensure the server status shows **● Server Active (Port 5555)**.
 4. Click the NDM icon in your browser to send links directly to the manager.
+5. Example: https://youtu.be/7CC2g5aF7g8
 
 ---
 
