@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <span class="title">NDM</span>
+        <label class="switch">
+            <input type="checkbox" id="auto-capture" checked>
+            <span class="slider round"></span>
+        </label>
+        <span class="auto-label">Auto-Capture</span>
+    </div>
+    
+    <div id="drop-zone">
+        <div class="icon">📥</div>
+        <h3>Drop Link Disini</h3>
+        <p>Drag link dari halaman web ke kotak ini</p>
+    </div>
+
+    <div class="divider"><span>— atau ketik URL —</span></div>
+
+    <div id="manual-input">
+        <input type="text" id="url-input" placeholder="Tempel / ketik URL disini..." />
+        <button id="send-btn">➤</button>
+    </div>
+
+    <div id="status">Siap</div>
+    <script src="popup.js"></script>
+</body>
+</html>

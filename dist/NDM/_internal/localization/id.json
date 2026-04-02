@@ -1,0 +1,156 @@
+{
+    "app": {
+        "title": "Nusantara Download Manager",
+        "version": "Versi 2.0.1 Stabil"
+    },
+    "sidebar": {
+        "downloads_header": "Unduhan",
+        "tools_header": "Peralatan",
+        "active": "Aktif",
+        "completed": "Selesai",
+        "failed": "Gagal",
+        "integration": "Integrasi",
+        "activity_log": "Log Aktifitas",
+        "about_ndm": "Tentang NDM",
+        "start_on_boot": "Mulai otomatis"
+    },
+    "downloads": {
+        "url_label": "URL",
+        "url_placeholder": "Masukkan URL unduhan di sini...",
+        "search_placeholder": "🔍 Cari berdasarkan nama file atau URL...",
+        "paste": "Tempel",
+        "add_download": "+ Tambah Unduhan",
+        "adding": "Menambah unduhan baru:",
+        "category": {
+            "All": "Semua",
+            "Compressed": "Kompresi",
+            "Video": "Video",
+            "Audio": "Audio",
+            "Image": "Gambar",
+            "Document": "Dokumen",
+            "Program": "Program"
+        },
+        "stats": {
+            "ready": "Siap",
+            "active": "Aktif: {count}",
+            "completed": "Selesai: {count}",
+            "total": "Total: {size}"
+        },
+        "network": {
+            "connected": "",
+            "loss": ""
+        },
+        "controls": {
+            "select_all": "Pilih Semua",
+            "clear_success": "Bersihkan Selesai",
+            "resume_selected": "Lanjutkan",
+            "pause_selected": "Jeda Selected",
+            "delete_selected": "Hapus Selected"
+        }
+    },
+    "row": {
+        "progress": "Progress",
+        "speed": "Kecepatan",
+        "status": "Status",
+        "eta": "Estimasi",
+        "pause": "Jeda",
+        "resume": "Lanjutkan",
+        "cancel": "Batal",
+        "details": "Detail",
+        "open_folder": "Buka Folder",
+        "redownload": "Unduh Ulang",
+        "unknown": "Tidak Diketahui",
+        "added": "Ditambahkan"
+    },
+    "browser": {
+        "title": "Integrasi Browser",
+        "server_active": "Server Aktif",
+        "server_offline": "Server Offline",
+        "setup_guide": "Panduan Pengaturan",
+        "install_now": "Pasang Sekarang",
+        "drag_drop": "TARIK \u0026 LEPAS DI SINI",
+        "drag_desc": "Pindahkan kartu ini ke halaman ekstensi Chrome",
+        "load_unpacked": "Atau gunakan Load Unpacked:",
+        "copy_path": "Salin Path",
+        "copied": "Tersalin!",
+        "steps": [
+            {
+                "title": "1. Aktifkan Developer Mode",
+                "desc": "Buka chrome://extensions/ di Chrome dan aktifkan 'Developer mode' di pojok kanan atas."
+            },
+            {
+                "title": "2. Pasang Ekstensi",
+                "desc": "Tarik kartu di sebelah kanan langsung ke halaman ekstensi Chrome untuk pemasangan instan."
+            },
+            {
+                "title": "3. Mulai Mengunduh",
+                "desc": "Klik ikon NDM di Chrome, lalu tarik tautan apa pun ke popup NDM untuk mengantre."
+            }
+        ]
+    },
+    "logging": {
+        "title": "Log Aktifitas",
+        "clear_history": "Hapus Riwayat",
+        "log_opened": "Tampilan log aktifitas dibuka."
+    },
+    "about": {
+        "header": "🚀",
+        "description": "Mesin modular dengan multi-threaded yang dioptimalkan\nuntuk kecepatan dan kemudahan. Dibuat untuk\nalur kerja profesional dan unduhan harian.",
+        "crafted_by": "Dibuat dengan ❤️ oleh",
+        "close": "Tutup Jendela"
+    },
+    "dialogs": {
+        "info_title": "Informasi Unduhan File",
+        "file_info": "Informasi File",
+        "file_name": "Nama File:",
+        "file_size": "Ukuran File:",
+        "extension": "Ekstensi:",
+        "download": "Unduh",
+        "cancel": "Batal",
+        "details_title": "Detail File",
+        "storage_location": "• Lokasi Penyimpanan: {path}",
+        "total_size": "• Total Ukuran: {size}",
+        "current_status": "• Status Saat Ini: {status}",
+        "date_added": "• Tanggal Ditambahkan: {date}",
+        "source_url": "🔗 URL Sumber (Perbarui jika tautan kedaluwarsa):",
+        "update_url": "Perbarui URL",
+        "close": "Tutup",
+        "exit_title": "Konfirmasi Keluar",
+        "next_action": "Tindakan Berikutnya?",
+        "exit_desc": "Pilih apakah ingin keluar sepenuhnya atau\ntetap berjalan di latar belakang (Tray).",
+        "to_tray": "Minimalkan ke Tray",
+        "exit_app": "Keluar Aplikasi"
+    },
+    "status": {
+        "starting": "Memulai",
+        "downloading": "Mengunduh",
+        "merging": "Menggabungkan",
+        "completed": "Selesai",
+        "paused": "Dijeda",
+        "cancelled": "Dibatalkan",
+        "error": "Galat",
+        "connection_lost": "Koneksi Terputus"
+    },
+    "settings": {
+        "title": "Pengaturan",
+        "general": "Pengaturan Umum",
+        "language": "Bahasa UI",
+        "language_desc": "Perubahan akan langsung diterapkan ke sidebar.",
+        "appearance": "Tampilan",
+        "theme": "Mode Tema",
+        "save_success": "Pengaturan berhasil disimpan."
+    },
+    "tray": {
+        "open": "Buka NDM",
+        "pause_all": "Jeda Semua",
+        "resume_all": "Lanjutkan Semua",
+        "exit": "Keluar"
+    },
+    "messages": {
+        "warning": "Peringatan",
+        "enter_url": "Silakan masukkan URL terlebih dahulu.",
+        "start_failed": "Gagal memulai unduhan: {error}",
+        "url_updated": "URL berhasil diperbarui.",
+        "running_background": "NDM berjalan di latar belakang (System Tray)."
+    }
+}

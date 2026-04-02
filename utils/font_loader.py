@@ -7,6 +7,7 @@ customtkinter (and tkinter) can use ("Poppins", size) tuples directly.
 import os
 import ctypes
 import sys
+from utils.helpers import get_resource_path
 
 # Windows GDI constant: load as a private, per-process font
 FR_PRIVATE = 0x10
@@ -25,9 +26,8 @@ def load_poppins(fonts_dir: str | None = None) -> bool:
         return True
 
     if fonts_dir is None:
-        # Default: <project_root>/fonts/
-        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        fonts_dir = os.path.join(base, "fonts")
+        # Resolve path via resource helper for PyInstaller compatibility
+        fonts_dir = get_resource_path("fonts")
 
     if not os.path.isdir(fonts_dir):
         return False

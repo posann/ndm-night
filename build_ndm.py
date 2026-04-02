@@ -29,6 +29,8 @@ def build(mode="portable"):
         f"--icon={ICON_FILE}",
         f"--add-data={ICON_FILE}{os.pathsep}.",
         f"--add-data={EXTENSION_FOLDER}{os.pathsep}{EXTENSION_FOLDER}",
+        f"--add-data=fonts{os.pathsep}fonts",
+        f"--add-data=localization{os.pathsep}localization",
         f"--add-data={ctk_path}{os.pathsep}customtkinter",
         "--name=" + (APP_NAME if mode == "installer" else APP_NAME + "-Portable"),
     ]

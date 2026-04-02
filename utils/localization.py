@@ -1,5 +1,6 @@
 import json
 import os
+from utils.helpers import get_resource_path
 
 _translations = {}
 _current_lang = "en"
@@ -13,9 +14,8 @@ def init_localization(lang=None):
             
     _current_lang = lang
     
-    # Check if we are running from a subfolder or project root
-    base_path = os.getcwd()
-    path = os.path.join(base_path, "localization", f"{lang}.json")
+    # Use the resource helper for PyInstaller compatibility
+    path = get_resource_path(os.path.join("localization", f"{lang}.json"))
     
     if os.path.exists(path):
         try:
